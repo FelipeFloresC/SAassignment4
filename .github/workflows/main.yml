@@ -37,7 +37,7 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         SOURCE_DIR: ./Static  
-        S3_BUCKET: grupo-8-bucket
+        AWS_S3_BUCKET: grupo-8-bucket
 
     - name: Invalidate CloudFront Cache
       run: |
