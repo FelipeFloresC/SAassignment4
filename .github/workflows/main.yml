@@ -21,9 +21,6 @@ jobs:
     - name: Install dependencies
       run: npm install  # Adjust if you're using another package manager
 
-    - name: Build the SPA
-      run: npm run build  # Adjust for your build command
-
     - name: Sync with S3
       uses: jakejarvis/s3-sync-action@master
       with:
@@ -31,7 +28,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        SOURCE_DIR: ./build  # Change to your build output directory
+        SOURCE_DIR: ./Static  # Change to your Static folder
         S3_BUCKET: grupo-8-bucket  # Change to your bucket name
 
     - name: Invalidate CloudFront Cache
