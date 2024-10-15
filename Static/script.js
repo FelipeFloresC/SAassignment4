@@ -9,29 +9,24 @@ function ensureTxtExtension(filename) {
 // Function to upload a file
 async function uploadFile(filename, content) {
     const updatedFilename = ensureTxtExtension(filename); // Ensure .txt extension
-    try{
-        const body = {
-            httpMethod: "POST",
-            queryStringParameters: {
-                filename: updatedFilename
-            },
-            body: btoa(content) // Convert content to base64
-        };
-    
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        });
-    
-        const result = await response.json();
-        console.log(result);
-    }catch (error) {
-        console.error('Error during file upload:', error);
-    }
+    const body = {
+        httpMethod: "POST",
+        queryStringParameters: {
+            filename: updatedFilename
+        },
+        body: btoa(content) // Convert content to base64
+    };
+
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+
+    const result = await response.json();
+    console.log(result);
 }
 
 // Function to search for a file
@@ -45,7 +40,6 @@ async function searchFile(filename) {
 
     const response = await fetch(`${apiUrl}?filename=${encodeURIComponent(filename)}`, {
         method: 'GET',
-        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json'
         }
@@ -66,12 +60,11 @@ async function searchFile(filename) {
 // Function to list all files
 async function listFiles() {
     const body = {
-        httpMethod: "GET",
+        httpMethod: "GET"
     };
 
     const response = await fetch(apiUrl, {
         method: 'GET',
-        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json'
         }
