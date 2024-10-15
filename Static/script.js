@@ -19,6 +19,7 @@ async function uploadFile(filename, content) {
 
     const response = await fetch(apiUrl, {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -40,6 +41,7 @@ async function searchFile(filename) {
 
     const response = await fetch(`${apiUrl}?filename=${encodeURIComponent(filename)}`, {
         method: 'GET',
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json'
         }
@@ -60,11 +62,12 @@ async function searchFile(filename) {
 // Function to list all files
 async function listFiles() {
     const body = {
-        httpMethod: "GET"
+        httpMethod: "GET",
     };
 
     const response = await fetch(apiUrl, {
         method: 'GET',
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json'
         }
